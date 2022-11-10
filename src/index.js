@@ -1,9 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
-// import { initialiseDBConnection } from "./utils/initialiseDBConnection.js";
+import { initialiseDBConnection } from "./utils/initialiseDBConnection";
 const app = express();
 dotenv.config();
-// initialiseDBConnection();
+initialiseDBConnection();
+
 app.get("/", (req, res) => {
   return res.send("Server is running...");
 });
