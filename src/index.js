@@ -5,7 +5,7 @@ const app = express();
 dotenv.config();
 // initialiseDBConnection();
 app.get("/", (req, res) => {
-  res.send("Server in running...");
+  return res.send("Server is running...");
 });
 
 const PORT = process.env.PORT;
