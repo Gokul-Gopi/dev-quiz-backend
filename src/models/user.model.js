@@ -3,12 +3,12 @@ const { Schema, model } = mongoose;
 import { emailRegex } from "../utils/helpers";
 
 const userSchema = new Schema({
-  firstName: {
+  firstname: {
     type: String,
     required: [true, "Firstname is required"],
     trim: true,
   },
-  lastName: {
+  lastname: {
     type: String,
     required: [true, "Lastname is required"],
     trim: true,
