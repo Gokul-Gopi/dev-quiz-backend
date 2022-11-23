@@ -81,3 +81,23 @@ export const registerUser = async (req, res) => {
     return sendErrorMessageAndStatus(error, res);
   }
 };
+
+export const isAuthenticatedUser = async (req, res, next) => {
+  try {
+    const token = req.headers?.authorization?.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+    const user = await User.findById(decoded?.id);
+
+    if (!user) {
+      throw {
+        status_code: 401,
+        message: "You are not authenticated to do this",
+      };
+    }
+    req.user = user;
+    return next();
+  } catch (error) {
+    return sendErrorMessageAndStatus(error, res);
+  }
+};
