@@ -10,3 +10,12 @@ export const getQuiz = async (req, res) => {
     return sendErrorMessageAndStatus(error, res);
   }
 };
+
+export const getQuizes = async (req, res) => {
+  try {
+    const quizes = await Quiz.find({}).select(["_id", "name"]);
+    return res.status(200).json({ status: true, data: quizes });
+  } catch (error) {
+    return sendErrorMessageAndStatus(error, res);
+  }
+};
