@@ -13,9 +13,10 @@ export const getQuiz = async (req, res) => {
 
 export const getQuizes = async (req, res) => {
   try {
-    const quizes = await Quiz.find({}).select(["_id", "name"]);
+    const quizes = await Quiz.find({}).select("-questions");
     return res.status(200).json({ status: true, data: quizes });
   } catch (error) {
+    console.log(error);
     return sendErrorMessageAndStatus(error, res);
   }
 };

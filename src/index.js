@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import { initialiseDBConnection } from "./utils/initialiseDBConnection";
 import authRoutes from "./routes/auth.route";
 import quizRoutes from "./routes/quiz.route";
@@ -9,6 +10,11 @@ const app = express();
 dotenv.config();
 initialiseDBConnection();
 
+app.use(
+  cors({
+    origin: process.env.ORIGIN,
+  })
+);
 app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/quiz", quizRoutes);

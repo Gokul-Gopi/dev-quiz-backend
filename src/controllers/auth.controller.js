@@ -43,7 +43,13 @@ export const loginUser = async (req, res) => {
     //creating JWT token with userId as payload inside
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
 
-    return res.status(200).json({ status: true, token });
+    const response = {
+      token,
+      firstname: user?.firstname,
+      lastName: user?.lastname,
+    };
+
+    return res.status(200).json({ status: true, data: response });
   } catch (error) {
     return sendErrorMessageAndStatus(error, res);
   }

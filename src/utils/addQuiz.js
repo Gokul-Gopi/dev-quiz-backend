@@ -3,6 +3,8 @@ import { Quiz } from "../models/quiz.model";
 const quiz = {
   id: "1",
   name: "Javascript",
+  image:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/2048px-Unofficial_JavaScript_logo_2.svg.png",
   questions: [
     {
       question:
@@ -173,6 +175,7 @@ export const addQuiz = async () => {
     const newQuiz = new Quiz({
       name: quiz.name,
       questions: quiz.questions,
+      image: quiz.image,
     });
 
     await newQuiz.save();
